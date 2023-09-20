@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyChat002.MainPage">
+
+    <StackLayout>
+        <StackLayout Margin="20">
+            <Editor     x:Name="editor"
+                        Placeholder="Note text"
+                        HeightRequest="100" 
+                        Completed="OnEditorCompleted"/>
+
+            <Grid ColumnDefinitions="*,*">
+                <Button Text="Speech"
+                            Clicked="OnSpeechButton_Clicked" />
+
+                <Button Grid.Column="1"
+                            Text="Start recognition"
+                            Clicked="OnRecognitionButton_Clicked" />
+            </Grid>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
