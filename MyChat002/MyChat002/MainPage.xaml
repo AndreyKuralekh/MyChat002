@@ -7,8 +7,7 @@
         <StackLayout Margin="20">
             <Editor     x:Name="editor"
                         Placeholder="Note text"
-                        HeightRequest="100" 
-                        Completed="OnEditorCompleted"/>
+                        HeightRequest="100"/>
 
             <Grid ColumnDefinitions="*,*">
                 <Button Text="Speech"
@@ -16,7 +15,7 @@
 
                 <Button Grid.Column="1"
                             Text="Start recognition"
-                            Clicked="OnRecognitionButton_Clicked" />
+                            Clicked="StartButton_Clicked" />
             </Grid>
         </StackLayout>
     </StackLayout>

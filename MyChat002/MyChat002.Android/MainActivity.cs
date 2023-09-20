@@ -17,19 +17,25 @@ namespace MyChat002.Droid
         private TextView resultTextView;
         private Button startButton;
 
+        private MainPage mainPage;
+        public event EventHandler<string> EditorTextChanged; // Событие с аргументом string
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            LoadApplication(new App());
 
-            SetContentView(Resource.Layout.Main);
+            var app = new App();
+            var mainPage = app.MainPage as MainPage;
+            EditorTextChanged += mainPage.HandleEditorTextChanged; // Подписываемся на событие
 
-            resultTextView = FindViewById<TextView>(Resource.Id.resultTextView);
-            startButton = FindViewById<Button>(Resource.Id.startButton);
-            startButton.Click += StartButton_Click;
+            mainPage = app.MainPage as MainPage; // Приводим MainPage к типу MainPage
+            mainPage.StartButtonClicked += StartButton_Click;
+
+            LoadApplication(app);
+
         }
         private void StartButton_Click(object sender, System.EventArgs e)
         {
@@ -48,7 +54,7 @@ namespace MyChat002.Droid
                 if (matches.Count != 0)
                 {
                     string text = matches[0];
-                    resultTextView.Text = "Recognized: " + text;
+                    EditorTextChanged?.Invoke(this, text);
                 }
             }
 

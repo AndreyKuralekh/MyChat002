@@ -12,6 +12,7 @@ namespace MyChat002
 {
     public partial class MainPage : ContentPage
     {
+        public event EventHandler StartButtonClicked;
         public MainPage()
         {
             InitializeComponent();
@@ -26,14 +27,13 @@ namespace MyChat002
             await TextToSpeech.SpeakAsync(speech);
             //await DisplayAlert("Внимание!", $"Нажата клавиша{(sender as Xamarin.Forms.Button).Text}", "Ok");
         }
-        private async void OnEditorCompleted(object sender, EventArgs e)
+        private void StartButton_Clicked(object sender, EventArgs e)
         {
-            //var speech = editor.Text;
-            //await TextToSpeech.SpeakAsync(speech);
+            StartButtonClicked?.Invoke(this, EventArgs.Empty);
         }
-        private async void OnRecognitionButton_Clicked(object sender, EventArgs e)
+        public void HandleEditorTextChanged(object sender, string newText)
         {
-            await DisplayAlert("Внимание!", $"Нажата клавиша{(sender as Xamarin.Forms.Button).Text}", "Ok");
+            editor.Text = newText; // Передаем текст в поле editor
         }
     }
 }
