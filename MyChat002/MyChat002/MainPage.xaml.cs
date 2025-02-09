@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Essentials;
 using static Xamarin.Essentials.Permissions;
+using MyChat002.Models;
 
 namespace MyChat002
 {
@@ -34,6 +35,14 @@ namespace MyChat002
         public void HandleEditorTextChanged(object sender, string newText)
         {
             editor.Text = newText; // Передаем текст в поле editor
+        }
+        private void OnSelectionChange(object sender, SelectionChangedEventArgs e) 
+        { 
+        
+        }
+        private void OnSendMessageButton_Clicked(Object sender, EventArgs e) 
+        { 
+        
         }
     }
 }

@@ -4,11 +4,39 @@
              x:Class="MyChat002.MainPage">
 
     <StackLayout>
+        <CollectionView x:Name="collectionView"
+                    Margin="20"
+                    SelectionMode="Single"
+                    SelectionChanged="OnSelectionChange" >
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"
+                               ItemSpacing="10" />
+
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Label Text="{Binding Text}"
+                           TextColor="Black"
+                           FontSize="Medium"/>
+                        <Label Text="{Binding Date}"
+                           TextColor="Silver"
+                           FontSize="Small" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
         <StackLayout Margin="20">
-            <Editor     x:Name="editor"
+            <Grid ColumnDefinitions="*,*">
+                <Editor     x:Name="editor"
                         Placeholder="Note text"
                         HeightRequest="100"/>
-
+                <ImageButton Source="sendmessage.png"
+                            HorizontalOptions="End"
+                            VerticalOptions="CenterAndExpand"
+                            Clicked="OnSendMessageButton_Clicked" />
+            </Grid>
             <Grid ColumnDefinitions="*,*">
                 <Button Text="Speech"
                             Clicked="OnSpeechButton_Clicked" />
